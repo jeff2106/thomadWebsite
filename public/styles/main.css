@@ -1,0 +1,51 @@
+.h-full {
+  width: 100vh;
+  height: 100vh;
+}
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.marginCenter {
+  margin: auto;
+}
+.primary-bg {
+  background-color: #eb1a1a !important;
+}
+.primary-text {
+  color: #eb1a1a;
+}
+.bg-img-connect {
+  background-image: url("../assets/connect_img.png");
+}
+.circle {
+  height: 131px;
+  width: 131px;
+  left: 266px;
+  top: 237px;
+  border-radius: 0px;
+}
+footer {
+  background-color: black;
+}
+.little-circle {
+  height: 72px;
+  width: 72px;
+  left: 267.5px;
+  top: 0px;
+  border-radius: 200px;
+}
+.home-sectionOne {
+    background-image: url('../assets/c9dcfbb25aeb2a90f9a09677f111bbd9\ 1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 70vh;
+    width: 90%;
+    margin: auto;
+}

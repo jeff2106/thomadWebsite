@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+        integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <title>News Letters</title>
+</head>
+
+<body>
+    <div class="h-screen flex overflow-scroll">
+        <div class="m-auto bg-gray-100 p-10 w-6/12">
+            <h1 class="text-3xl font-bold text-center">News Letters</h1>
+            <p class="text-xl text-gray-400 text-center mb-5">Bienvenue sur l'interface d'envoi de News Letters,
+                veuillez
+                remplir les champs en dessous et la News Letters sera diffusé</p>
+            <form action="/login" method="POST">
+                <div class="flex items-center justify-between">
+                    <label for="sujet" class="font-bold">Object</label>
+                    <input id="getVal_1" class="w-10/12 h-14 bg-white outline-none rounded p-2" type="text"
+                        name="object" />
+                </div>
+                <div class="flex items-start justify-between mt-4">
+                    <label for="message" class="font-bold">Message</label>
+                    <textarea id="getVal_2" rows="10" type="text" class="w-10/12 h-26 bg-white outline-none rounded p-2"
+                        name="Message"></textarea>
+                </div>
+                <center>
+                    <input type="submit" class="w-10/12 mt-10 h-14 text-white bg-blue-500 rounded " value="Submit" />
+                </center>
+            </form>
+            {% if session.error : %}
+            <center>
+                <div class="h-10 bg-red-500 w-8/12 my-2 rounded flex items-center justify-center">
+                    <span class="text-white">Erreur lors du traitement de la requête </span>
+                </div>
+            </center>
+            {% endif %}
+            {% if session.mail_send : %}
+            <center>
+                <div class="h-10 bg-green-500 w-8/12 my-2 rounded flex items-center justify-center">
+                    <span class="text-white">Les emails ont bien été diffusé !!!</span>
+                </div>
+            </center>
+            {% endif %}
+            <h1 class="text-xl text-center text-red-500 mb-2 mt-2">Les utilisateurs abonnés{{count}}</h1>
+            <div class="overflow-scroll p-3 h-36 w-full bg-blue-100">
+                {% if count == 0 : %}
+                <h1 class="text-center">Aucune personne abonnés...</h1>
+                {% endif %}
+                {% for text in data %}
+                <div class="w-full h-14 bg-gray-200 rounded flex items-center justify-center mb-2">
+                    <td class="""> <span class=" font-bold mr-3">({{ text[0] }})</span></td>
+                    <td class="""> <span class=" font-bold mr-3">{{ text[1] }}</span></td>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Récupérer les éléments d'entrée et leur ajouter des écouteurs d'événements
+    let getVal1_v = document.getElementById('getVal_1').addEventListener("input", updateValue);
+    let getVal2_v = document.getElementById('getVal_2').addEventListener("input", updateValue2);
+
+    // Exécuter ce code lorsque la fenêtre a fini de charger
+    window.onload = function (event) {
+        // Vérifier si une valeur est stockée dans localStorage pour 'getVal_1'
+        if (localStorage.getItem('getVal_1') !== null) {
+            // Si une valeur est stockée, définir la valeur du champ d'entrée sur la valeur stockée
+            document.getElementById('getVal_1').value = localStorage.getItem('getVal_1');
+        }
+        // Vérifier si une valeur est stockée dans localStorage pour 'getVal_2'
+        if (localStorage.getItem('getVal_2') !== null) {
+            // Si une valeur est stockée, définir la valeur du champ d'entrée sur la valeur stockée
+            document.getElementById('getVal_2').value = localStorage.getItem('getVal_2');
+        }
+    }
+
+    // Fonction pour mettre à jour la valeur de 'getVal_1' et la stocker dans localStorage
+    function updateValue(e) {
+        localStorage.setItem('getVal_1', e.target.value); // Stocker la valeur dans localStorage
+    }
+
+    // Fonction pour mettre à jour la valeur de 'getVal_2' et la stocker dans localStorage
+    function updateValue2(e) {
+        localStorage.setItem('getVal_2', e.target.value); // Stocker la valeur dans localStorage
+    }
+
+
+</script>
+
+</html>
